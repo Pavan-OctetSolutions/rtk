@@ -1,21 +1,17 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import axios from "axios";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const apiSlice = createApi({
-  baseQuery: async (url) => {
-    const response = await axios.get(url);
-    return response;
-  },
+  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
   endpoints: function (builder) {
     return {
       getAllTodos: builder.query({
         query: () => {
-          return "https://dummyjson.com/todos";
+          return "/todos";
         },
       }),
       getTodo: builder.query({
         query: (id) => {
-          `https://dummyjson.com/todos/${id}`;
+          `/todos/${id}`;
         },
       }),
     };
