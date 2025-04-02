@@ -1,5 +1,6 @@
 import React from "react";
 import Todo from "../components/Todo";
+import TodoInputBox from "../components/TodoInputBox";
 
 export default function TodoPage({ todos }) {
 
@@ -17,6 +18,7 @@ export default function TodoPage({ todos }) {
         overflow:"auto"
       }}
     >
+      <TodoInputBox/>
       {todos &&
         todos.map((todo) => (
          <Todo todo={todo} key={todo.id}/>
