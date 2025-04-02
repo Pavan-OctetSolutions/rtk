@@ -11,7 +11,7 @@ const apiSlice = createApi({
       }),
       getTodo: builder.query({
         query: (id) => {
-          `/todos/${id}`;
+          return `/todos/${id}`;
         },
       }),
     };
@@ -19,5 +19,5 @@ const apiSlice = createApi({
 });
 
 export default apiSlice;
-const { useGetAllTodosQuery } = apiSlice;
-export { useGetAllTodosQuery };
+const { useGetAllTodosQuery,useLazyGetTodoQuery} = apiSlice;
+export { useGetAllTodosQuery,useLazyGetTodoQuery};

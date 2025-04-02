@@ -1,8 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import Todo from "../components/Todo";
 
 export default function TodoPage({ todos }) {
-  const [status, setStatus] = useState(false);
 
   return (
     <div
@@ -20,33 +19,7 @@ export default function TodoPage({ todos }) {
     >
       {todos &&
         todos.map((todo) => (
-          <div
-            key={todo.id}
-            style={{
-              width:"50%",
-              display: "flex",
-              alignContent: "start",
-              justifyContent: "space-between",
-              border: "1px solid black",
-              backgroundColor: "gray",
-              color: "White",
-              paddingInline:'0.4rem',
-              textAlign:"left"
-            }}
-          >
-            <p>todo: {todo.todo}</p>
-            <div  style={{
-              display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
-              gap:'0.5rem',
-              padding:'1rem' 
-            }}>
-              <button>Delete</button>
-              <button>Status</button>
-            </div>
-            {status && <p>todo.status</p>}
-          </div>
+         <Todo todo={todo}/>
         ))}
     </div>
   );
