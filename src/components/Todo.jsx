@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLazyGetTodoQuery } from "../store/apiSlice";
+import { useDeleteTodoMutation } from "../store/deleteApiSlice";
 
 export default function Todo({ todo }) {
   const [trigger, result] = useLazyGetTodoQuery();
+  const [deleteTodoFn,deleteTodoResult] = useDeleteTodoMutation();
 
   function handleGetStatus(id) {
     trigger(id);
   }
 
-  function handleDeleteTodo(id) {}
+  function handleDeleteTodo(id) {
+    deleteTodoFn(id);
+  }
+
+  useEffect(()=>{
+    if(deleteTodoResult?.isSuccess){
+      alert("Todo deleted successfully")
+    }
+  },[deleteTodoResult?.isSuccess])
 
   return (
     <div
