@@ -5,7 +5,7 @@ const deleteApiSlice = apiSlice.injectEndpoints({
     return {
       deleteTodo: builder.mutation({
         query: (id) => ({
-          url: `/todos/${id}sd`,
+          url: `/todos/${id}`,
           method: "DELETE",
         }),
         onQueryStarted: function (id, { dispatch,queryFulfilled}) {
