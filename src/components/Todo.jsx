@@ -44,6 +44,9 @@ export default function Todo({ todo }) {
       {result?.data?.id  && (
         <span>{result?.data?.completed ? "Completed" : "pending"}</span>
       )}
+        {result?.error  && (
+        <span>{result?.error?.data?.message}</span>
+      )}
     </div>
   );
 }
