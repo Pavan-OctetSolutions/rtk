@@ -47,18 +47,18 @@ RUN apt-get update && apt-get install -y git && \
     rm -rf .git
 
 # Install dependencies & build
-RUN npm install && npm run build
+RUN npm install --omit=dev && npm run build
 
-# -------- Production Stage --------
-FROM node:18-slim
+# ---------- Production Stage ----------
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy built Vite app to nginx web root
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Install lightweight static server
-RUN npm install -g serve
+# Optional: custom nginx config (optional)
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy built React app
-COPY --from=build /app/dist ./dist
+# Expose port 80
+EXPOSE 80
 
-# Serve it
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["nginx", "-g", "daemon off;"]
